@@ -23,6 +23,14 @@ private:
 
     wl_status_t current_status;
     wl_status_t previous_status;
+    bool firstConnection;
+
+    void (*onFirstConnection)(void);
+    void (*onReconnected)(void);
+    void (*onLostConnection)(void);
+    void (*onDisconnected)(void);
+    void (*onConnected)(void);
+    void (*onTimeout)(void);
 
 public:
     WirelessClass();
@@ -46,6 +54,32 @@ public:
 
     void Begin();
     void Loop();
+
+    void OnFirstConnection( void (*fn)(void) ){
+        onFirstConnection = fn;
+    }
+
+    void OnReconnected( void (*fn)(void) ){
+        onReconnected = fn;
+    }
+
+    void OnLostConnection( void (*fn) (void) ){
+        onLostConnection = fn;
+    }
+
+    void OnDisconnected( void (*fn)(void) ){
+        onDisconnected = fn;
+    }
+
+    void OnConnected( void (*fn)(void) ){
+        onConnected = fn;
+    }
+
+    void OnTimeout( void (*fn)(void) ){
+        onTimeout = fn;
+    }
+
+
 };
 
 extern WirelessClass Wireless;

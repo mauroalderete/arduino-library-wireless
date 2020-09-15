@@ -40,6 +40,14 @@ void WirelessClass::setDefault(){
     timeout = 5000;
     current_status = WL_IDLE_STATUS;
     previous_status = WL_IDLE_STATUS;
+    firstConnection = true;
+
+    onFirstConnection = NULL;
+    onReconnected = NULL;
+    onLostConnection = NULL;
+    onDisconnected = NULL;
+    onConnected = NULL;
+    onTimeout = NULL;
 }
 
 WirelessClass::~WirelessClass(){
@@ -105,26 +113,30 @@ void WirelessClass::Begin(){
 
 void WirelessClass::Loop(){
     current_status = WiFi.status();
-
     if( current_status != previous_status ){
-        //hubo un cambio en el estado de coneccion;
         if( current_status == WL_CONNECTED ){
-            //recupero la conexion
+            if(firstConnection){
+                firstConnection = false;
+                if( onFirstConnection != NULL) onFirstConnection();
+            } else {
+                if( onReconnected != NULL) onReconnected();
+            }
         }
         if( previous_status == WL_CONNECTED){
-            //acaba de perder la conexion
             interval == millis();
+            if( onLostConnection != NULL) onLostConnection();
         }
     }
 
     if (WiFi.status() == WL_CONNECTED){
-
+        if( onConnected != NULL) onConnected();
     } else {
         unsigned long current = millis();
         if( current - interval >= timeout ){
-            //se acabo el tiempo de espera para reintentar conectar
             interval = current;
+            if( onTimeout != NULL) onTimeout();
         }
+        if( onDisconnected != NULL) onDisconnected();
     }
 
     previous_status = current_status;

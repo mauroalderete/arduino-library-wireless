@@ -86,7 +86,7 @@ String WirelessClass::getUID(){
     return WiFi.macAddress();
 }
 
-wl_status_t void WirelessClass::getStatus(){
+wl_status_t WirelessClass::getStatus(){
     return current_status;
 }
 

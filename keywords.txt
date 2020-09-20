@@ -1,0 +1,38 @@
+#######################################
+# Syntax Coloring Map rString
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+WirelessClass	KEYWORD1	WirelessClass
+Wireless	KEYWORD1	Wireless
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+setSSID	KEYWORD2
+setPassword	KEYWORD2
+setAccess	KEYWORD2
+setTimeout	KEYWORD2
+setHostname	KEYWORD2
+setModeStation	KEYWORD2
+setModeAP	KEYWORD2
+setStaticIP	KEYWORD2
+getUID	KEYWORD2
+getStatus	KEYWORD2
+OnFirstConnection	KEYWORD2
+OnReconnected	KEYWORD2
+OnLostConnection	KEYWORD2
+OnDisconnected	KEYWORD2
+OnConnected	KEYWORD2
+OnTimeout	KEYWORD2
+
+    
+Begin	KEYWORD2
+Loop	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################

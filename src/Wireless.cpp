@@ -98,6 +98,10 @@ wl_status_t WirelessClass::getStatus(){
     return current_status;
 }
 
+IPAddress WirelessClass::getIP(){
+    return WiFi.localIP();
+}
+
 void WirelessClass::Begin(){
     WiFi.mode(mode);
     if(hostname!=""){

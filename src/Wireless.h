@@ -51,6 +51,7 @@ public:
 
     String getUID();
     wl_status_t getStatus();
+    IPAddress getIP();
 
     void Begin();
     void Loop();
